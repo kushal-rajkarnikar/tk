@@ -1,14 +1,43 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+	<ion-navbar color="primary">
+		<ion-title>
+			Timekeeper
+		</ion-title>
+	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+
+	<ion-card color="primary" padding>
+		<h2>Time Remaining:</h2>
+		<h1>8 hours 5 minutes</h1>
+	</ion-card>
+
+
+	
+	<ion-card class="red">		
+		<ion-grid>
+			<ion-row>
+				<ion-col col-12>
+					SUNDAY
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col col-6 in-time>
+					9:06 AM
+				</ion-col>
+				<ion-col col-6 out-time>
+					5:20 PM
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+	</ion-card>
+
+	<ion-fab right bottom>
+		<button ion-fab color="defualt">IN</button>    
+	</ion-fab>
+
 </ion-content>
+
+<!-- *ngFor="let item of items" (click)="itemSelected(item)" -->

@@ -14,3 +14,18 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.red{
+	border-left: 2px solid red;
+}
+
+.green{
+	border-left: 2px solid green;
+}
+
+.in-time{
+
+}
+
+.out-time{
+	text-align: right
+}
