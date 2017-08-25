@@ -14,12 +14,13 @@ import moment from 'moment';
 export class HomePage {
 
   timeList: any[];
-  toda
+
 
 	items: any[];
+
   toSignInorOut: string = 'in';
 
-  currentMoment = moment();
+  currentMoment: any;
 
   date = moment().format('YYYYMMDD');
 
@@ -28,6 +29,7 @@ export class HomePage {
   time = moment().format('h:mm:ss A');
 
   intime: any;
+  outtime: any;
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, private timeService: TimeServiceProvider) {
 
@@ -42,13 +44,15 @@ export class HomePage {
 
   presentToast(){
 
+    this.currentMoment = moment();
+
     let Toast = this.toastCtrl.create({
-      message: 'You signed ' + this.toSignInorOut + ' at ' + this.time,
+      message: 'You signed ' + this.toSignInorOut + ' at ' + this.currentMoment.format('h:mm:ss A'),
       duration: 3000,
       position: 'top'
     });
-    Toast.present();
 
+    Toast.present();
 
     if (this.toSignInorOut == 'in'){
       this.toSignInorOut='out';
@@ -68,9 +72,18 @@ export class HomePage {
     }
     else if (this.toSignInorOut == 'out'){
 
-        alert('current in time ' + this.timeList[this.timeList.length - 1].intime + '.\nout time is ' + this.currentMoment + '.\ndifference is '+ this.intime.diff(this.currentMoment, 'seconds'));
+        //alert('current in time ' + this.intime + '.\nout time is ' + this.currentMoment + '.\ndifference is '+ this.currentMoment.diff(this.intime, 'seconds'));
         this.toSignInorOut='in';
+        this.outtime = this.intime = this.currentMoment;
+        this.timeList[this.timeList.length - 1] =
+        {
+          'date': this.currentMoment.format('YYYYMMDD'),
+          'day': this.currentMoment.format('dddd'),
+          'intime': this.currentMoment.format('h:mm:ss A'),
+          'outtime': this.currentMoment.format('h:mm:ss A')
+        };
     }
+
 }
 
   itemSelected(item){
