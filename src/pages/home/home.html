@@ -14,28 +14,29 @@
 	</ion-card>
 
 
-	
-	<ion-card class="red">		
+	<ion-card *ngFor="let time of timeList">
 		<ion-grid>
 			<ion-row>
 				<ion-col col-12>
-					SUNDAY
+					{{ time.day }}
 				</ion-col>
 			</ion-row>
 			<ion-row>
-				<ion-col col-6 in-time>
-					9:06 AM
+				<ion-col col-6 class="in-time">
+					{{ time.intime }}
 				</ion-col>
-				<ion-col col-6 out-time>
-					5:20 PM
+				<ion-col col-6 class="out-time">
+					{{ time.outtime }}
 				</ion-col>
 			</ion-row>
 		</ion-grid>
-
 	</ion-card>
 
+
+
+
 	<ion-fab right bottom>
-		<button ion-fab color="defualt">IN</button>    
+		<button ion-fab color="defualt" (click)="presentToast()" class="in-out">{{ this.toSignInorOut }}</button>
 	</ion-fab>
 
 </ion-content>
