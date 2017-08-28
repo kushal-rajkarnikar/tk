@@ -73,12 +73,13 @@ export class HomePage {
     else if (this.toSignInorOut == 'out'){
 
        //call function here to check if user has signed out before half of his working hours
+        this.outtime = this.currentMoment;
 
-        //alert('current in time ' + this.intime + '.\nout time is ' + this.currentMoment + '.\ndifference is '+ this.currentMoment.diff(this.intime, 'seconds'));
         this.toSignInorOut='in';
-        this.outtime = this.intime = this.currentMoment;
+        // this.outtime = this.intime = this.currentMoment;
         this.timeList[this.timeList.length - 1].outtime = this.currentMoment.format('h:mm:ss A');
-
+        
+        //alert('difference is '+ this.outtime.diff(this.intime, 'seconds'));
     }
 
 }
