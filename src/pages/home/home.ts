@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
-import { DetailPage } from '../detail/detail';
 
 import { TimeServiceProvider } from '../../providers/time-service/time-service';
 import moment from 'moment';
@@ -15,9 +14,6 @@ export class HomePage {
 
   timeList: any[];
 
-
-	items: any[];
-
   toSignInorOut: string = 'in';
 
   currentMoment: any;
@@ -28,17 +24,14 @@ export class HomePage {
 
   hoursRemaining: any;
 
-  hourDifference: any;
-
-  minuteDifference: any;
-
   secondDifference: any;
 
-  totalSecondsRemaining: number = 10;
+  weeklyQuota: number = 32400;
 
   date = moment().format('YYYYMMDD');
 
   day = moment().format('dddd');
+  
   //get current time in h:mm A format
   time = moment().format('h:mm:ss A');
 
@@ -78,30 +71,25 @@ export class HomePage {
         'intime': this.currentMoment.format('h:mm:ss A')
       };
 
-      // this.timeList[this.timeList.length].day = this.day;
-      // this.timeList[this.timeList.length].intime = this.time;
-
       console.log(this.timeList);
       console.log(this.timeList[0].date);
-      // this.difference = this.difference + this.outtime.diff(this.intime, 'seconds');
 
     }
     else if (this.toSignInorOut == 'out'){
 
-       //call function here to check if user has signed out before half of his working hours
+       //call function here to check if user has signed out before half of his working hours'
+
         this.outtime = this.currentMoment;
 
         this.toSignInorOut='in';
         // this.outtime = this.intime = this.currentMoment;
         this.timeList[this.timeList.length - 1].outtime = this.currentMoment.format('h:mm:ss A');
 
-        // this.hourDifference = this.outtime.diff(this.intime, 'hours');
-        // this.minuteDifference = this.outtime.diff(this.intime, 'minutes');
         this.secondDifference = this.outtime.diff(this.intime, 'seconds');
 
-        this.secondsRemaining = this.totalSecondsRemaining - this.secondDifference;
+        this.secondsRemaining = this.weeklyQuota - this.secondDifference;
 
-        this.totalSecondsRemaining = this.secondsRemaining;
+        this.weeklyQuota = this.secondsRemaining;
 
         this.minutesRemaining = Math.floor(this.secondsRemaining/60);
 
@@ -111,11 +99,8 @@ export class HomePage {
 
         this.secondsRemaining = this.secondsRemaining % 60;
 
-        //this.hoursRemaining = Math.floor(this.minuteDifference/60);
-        //this.minutesRemaining = this.minuteDifference % 60;
-        //this.secondDifference = this.secondDifference % 60;
 
-        //alert('difference is '+ this.outtime.diff(this.intime, 'seconds'));
+
     }
 
 }
