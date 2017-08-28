@@ -22,6 +22,20 @@ export class HomePage {
 
   currentMoment: any;
 
+  secondsRemaining: any;
+
+  minutesRemaining: any;
+
+  hoursRemaining: any;
+
+  hourDifference: any;
+
+  minuteDifference: any;
+
+  secondDifference: any;
+
+  totalSecondsRemaining: number = 10;
+
   date = moment().format('YYYYMMDD');
 
   day = moment().format('dddd');
@@ -69,6 +83,8 @@ export class HomePage {
 
       console.log(this.timeList);
       console.log(this.timeList[0].date);
+      // this.difference = this.difference + this.outtime.diff(this.intime, 'seconds');
+
     }
     else if (this.toSignInorOut == 'out'){
 
@@ -78,17 +94,32 @@ export class HomePage {
         this.toSignInorOut='in';
         // this.outtime = this.intime = this.currentMoment;
         this.timeList[this.timeList.length - 1].outtime = this.currentMoment.format('h:mm:ss A');
-        
+
+        // this.hourDifference = this.outtime.diff(this.intime, 'hours');
+        // this.minuteDifference = this.outtime.diff(this.intime, 'minutes');
+        this.secondDifference = this.outtime.diff(this.intime, 'seconds');
+
+        this.secondsRemaining = this.totalSecondsRemaining - this.secondDifference;
+
+        this.totalSecondsRemaining = this.secondsRemaining;
+
+        this.minutesRemaining = Math.floor(this.secondsRemaining/60);
+
+        this.hoursRemaining = Math.floor(this.minutesRemaining/60);
+
+        this.minutesRemaining = Math.floor(this.secondsRemaining/60) % 60;
+
+        this.secondsRemaining = this.secondsRemaining % 60;
+
+        //this.hoursRemaining = Math.floor(this.minuteDifference/60);
+        //this.minutesRemaining = this.minuteDifference % 60;
+        //this.secondDifference = this.secondDifference % 60;
+
         //alert('difference is '+ this.outtime.diff(this.intime, 'seconds'));
     }
 
 }
 
-  itemSelected(item){
-  		this.navCtrl.push(DetailPage, {
-			item: item
-  		});
-  }
 
 
 }
