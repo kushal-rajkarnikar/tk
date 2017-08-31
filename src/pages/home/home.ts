@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 import { TimeServiceProvider } from '../../providers/time-service/time-service';
 import moment from 'moment';
@@ -31,14 +32,14 @@ export class HomePage {
   date = moment().format('YYYYMMDD');
 
   day = moment().format('dddd');
-  
+
   //get current time in h:mm A format
   time = moment().format('h:mm:ss A');
 
   intime: any;
   outtime: any;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private timeService: TimeServiceProvider) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private timeService: TimeServiceProvider, private alertctrl: AlertController) {
 
   // this.timeList = this.getTimeLog();
   this.getTimeLog();
@@ -47,6 +48,37 @@ export class HomePage {
 
   getTimeLog(){
     this.timeService.getTimeLog().subscribe(data => this.timeList = data);
+    this.getDataOfThisWeek(this.timeList);
+  }
+
+  getDataOfThisWeek(timelist){
+    this.currentMoment = moment();
+
+
+  }
+
+  presentConfirm(){
+    let alert = this.alertctrl.create({
+      title: 'Leaving so soon?',
+      message: 'Your working hours is less than half a day. Are you sure you want to sign out?',
+      buttons: [
+      {
+        text: 'No',
+        role: 'cancel',
+        handler:() => {
+
+        }
+      },
+      {
+        text: 'Sign Out',
+        role: 'cancel',
+        handler:() => {
+
+        }
+      }
+      ]
+    });
+    alert.present();
   }
 
   presentToast(){
@@ -83,21 +115,29 @@ export class HomePage {
 
         this.toSignInorOut='in';
         // this.outtime = this.intime = this.currentMoment;
-        this.timeList[this.timeList.length - 1].outtime = this.currentMoment.format('h:mm:ss A');
 
         this.secondDifference = this.outtime.diff(this.intime, 'seconds');
 
-        this.secondsRemaining = this.weeklyQuota - this.secondDifference;
+        if (this.secondDifference < 16200){
+           this.presentConfirm();
+        }
+        else {
+          this.timeList[this.timeList.length - 1].outtime = this.currentMoment.format('h:mm:ss A');
 
-        this.weeklyQuota = this.secondsRemaining;
+          this.secondsRemaining = this.weeklyQuota - this.secondDifference;
 
-        this.minutesRemaining = Math.floor(this.secondsRemaining/60);
+          this.weeklyQuota = this.secondsRemaining;
 
-        this.hoursRemaining = Math.floor(this.minutesRemaining/60);
+          this.minutesRemaining = Math.floor(this.secondsRemaining/60);
 
-        this.minutesRemaining = Math.floor(this.secondsRemaining/60) % 60;
+          this.hoursRemaining = Math.floor(this.minutesRemaining/60);
 
-        this.secondsRemaining = this.secondsRemaining % 60;
+          this.minutesRemaining = Math.floor(this.secondsRemaining/60) % 60;
+
+          this.secondsRemaining = this.secondsRemaining % 60;
+        }
+
+
 
 
 
