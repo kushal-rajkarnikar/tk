@@ -91,7 +91,7 @@ export class HomePage {
       position: 'top'
     });
 
-    Toast.present();
+
 
     if (this.toSignInorOut == 'in'){
       this.toSignInorOut='out';
@@ -105,6 +105,8 @@ export class HomePage {
 
       console.log(this.timeList);
       console.log(this.timeList[0].date);
+
+      Toast.present();
 
     }
     else if (this.toSignInorOut == 'out'){
@@ -122,6 +124,7 @@ export class HomePage {
            this.presentConfirm();
         }
         else {
+          Toast.present();
           this.timeList[this.timeList.length - 1].outtime = this.currentMoment.format('h:mm:ss A');
 
           this.secondsRemaining = this.weeklyQuota - this.secondDifference;
