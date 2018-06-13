@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the TimeServiceProvider provider.
@@ -17,9 +18,11 @@ export class TimeServiceProvider {
 
   private url: string = "json/timelog.json";
 
-  constructor(private http: Http) {
+  constructor(private http: Http, public storage: Storage) {
     console.log('Hello TimeServiceProvider Provider');
+    this.storage.set('name', 'Max');    
   }
+
 
     getTimeLog(){
       return this.http.get(this.url)
@@ -42,6 +45,8 @@ export class TimeServiceProvider {
     private extractData(res: Response){
       return res.json();
     }
+
+
 
 
 }

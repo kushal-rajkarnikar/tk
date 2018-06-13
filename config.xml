@@ -85,4 +85,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <engine name="android" spec="~5.1.1" />
     <plugin name="cordova-plugin-file" spec="~4.3.3" />
+    <plugin name="cordova-sqlite-storage" spec="~2.3.2" />
 </widget>

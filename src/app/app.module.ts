@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetailPage } from '../pages/detail/detail'
 import { TimeServiceProvider } from '../providers/time-service/time-service';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
