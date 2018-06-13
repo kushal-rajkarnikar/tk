@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-
 import { TimeServiceProvider } from '../../providers/time-service/time-service';
 import moment from 'moment';
 
@@ -104,7 +103,8 @@ export class HomePage {
       };
 
       console.log(this.timeList);
-      console.log(this.timeList[0].date);
+
+      //console.log(this.timeList[0].date);
 
       Toast.present();
 
