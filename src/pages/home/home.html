@@ -15,7 +15,7 @@
 	</ion-card>
 
 
-	<ion-card *ngFor="let time of timeList">
+	<ion-card *ngFor="let time of timeList" (click) = "presentActionSheet()">
 		<ion-grid>
 			<ion-row>
 				<ion-col col-12>

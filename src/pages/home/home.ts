@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { ActionSheetController } from 'ionic-angular';
 import { TimeServiceProvider } from '../../providers/time-service/time-service';
 import moment from 'moment';
 
@@ -38,7 +39,7 @@ export class HomePage {
   intime: any;
   outtime: any;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private timeService: TimeServiceProvider, private alertctrl: AlertController) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private timeService: TimeServiceProvider, private alertctrl: AlertController, public actionSheetCtrl: ActionSheetController) {
 
   // this.timeList = this.getTimeLog();
   this.getTimeLog();
@@ -54,6 +55,39 @@ export class HomePage {
     this.currentMoment = moment();
 
 
+  }
+
+  presentActionSheet(){
+    const actionSheet = this.actionSheetCtrl.create({
+      title: 'Day Actions',
+      buttons: [
+        {
+          text: 'Edit Time',
+          role: 'destructive',
+          icon:  'create',
+          handler: () => {
+            console.log('clicked on edit');
+          }
+        },
+        {
+          text: 'Mark as Half Day',
+          role: 'destructive',
+          icon: 'star-half',
+          handler: () => {
+            console.log('clicked on half day');
+          }
+        },
+        {
+          text: 'Mark as Leave',
+          role: 'destructive',
+          icon: 'star',
+          handler: () => {
+            console.log('clicked on mark as leave');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
   presentConfirm(){
@@ -102,7 +136,7 @@ export class HomePage {
         'intime': this.currentMoment.format('h:mm:ss A')
       };
 
-      console.log(this.timeList);
+      // console.log(this.timeList);
 
       //console.log(this.timeList[0].date);
 
