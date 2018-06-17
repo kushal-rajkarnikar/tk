@@ -7,17 +7,23 @@ import { HttpModule } from '@angular/http'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { WelcomePage } from '../pages/welcome/welcome';
 import { DetailPage } from '../pages/detail/detail'
 import { TimeServiceProvider } from '../providers/time-service/time-service';
-// import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    WelcomePage,
     DetailPage
   ],
   imports: [
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule
@@ -26,6 +32,7 @@ import { TimeServiceProvider } from '../providers/time-service/time-service';
   entryComponents: [
     MyApp,
     HomePage,
+    WelcomePage,
     DetailPage
   ],
   providers: [

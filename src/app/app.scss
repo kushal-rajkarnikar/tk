@@ -14,8 +14,43 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@font-face {
+	font-family: 'bavroregular';
+	src: url('../fonts/bavro-regular-webfont.eot');
+	src: url('../fonts/bavro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/bavro-regular-webfont.woff2') format('woff2'),
+	url('../fonts/bavro-regular-webfont.woff') format('woff'),
+	url('../fonts/bavro-regular-webfont.ttf') format('truetype'),
+	url('../fonts/bavro-regular-webfont.svg#bavroregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'digital-7';
+	src: url('../fonts/digital-7.ttf');
+}
+
+@font-face {
+	font-family: 'Montserrat-Light';
+	src: url('../fonts/Montserrat-Light.otf');
+}
+
+@font-face {
+	font-family: 'Roboto-Thin';
+	src: url('../fonts/Roboto-Thin.ttf');
+}
+
+
+// *{
+// 	font-family: 'bavroregular';
+// }
+
 body{
-  background: #35395C;
+//   background: #35395C;
+     font-family: 'Montserrat-Light';
 }
 .red{
 	border-left: 2px solid red;
@@ -25,8 +60,12 @@ body{
 	border-left: 2px solid green;
 }
 
-.in-time{
-
+.in-time, .out-time{
+	font-size: 24px;	
+	padding-top: 0;
+	font-size: 1.5em;	
+	font-family: 'Roboto-Thin';
+	font-family: 'Montserrat-Light';
 }
 
 .out-time{
@@ -45,3 +84,65 @@ body{
 .content{
   background: #35395C;
 }
+
+.tk-fab{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f73254+0,a8449e+100 */
+background: rgb(247,50,84); /* Old browsers */
+background: -moz-linear-gradient(left, rgba(247,50,84,1) 0%, rgba(168,68,158,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(247,50,84,1) 0%,rgba(168,68,158,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(247,50,84,1) 0%,rgba(168,68,158,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f73254', endColorstr='#a8449e',GradientType=1 ); /* IE6-9 */
+font-size: 24px;
+font-weight: bold;
+}
+
+.day{
+	background: #323654;
+	color: white;
+	border: 1px solid #28304a;
+
+}
+
+.day-label{
+	font-family: 'bavroregular';
+}
+
+.green{
+	border-left: 10px solid green;
+}
+
+.no-bg, .list-md .item-input.no-bg:last-child{
+	background: none;
+	padding-left: 0;	
+}
+
+.no-bg input, .datetime-text, .no-bg .label-md{
+	color: white;
+}
+
+.no-bg input{
+	width: 100%;
+	margin: 13px 0;
+}
+
+.item-input.no-bg ion-input input{
+	width: 100%;
+	margin: 13px 0;
+}
+
+ion-datetime{
+	border-bottom: 1px solid white;
+}
+
+.no-bg.item-md.item-block .item-inner{
+	padding-right: 0px;
+}
+
+ .item-input-has-focus .label-md[stacked], .input-has-focus .label-md[stacked]{
+	 color: white;
+ }
+
+ .list-md .item-input.item-input-has-focus:last-child, .list-md .item-input.input-has-focus:last-child{
+	 border-bottom-color: white;
+	 box-shadow: none;
+ }

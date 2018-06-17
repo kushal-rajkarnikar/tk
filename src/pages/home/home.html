@@ -15,10 +15,10 @@
 	</ion-card>
 
 
-	<ion-card *ngFor="let time of timeList" (click) = "presentActionSheet()">
+	<ion-card class="day green" *ngFor="let time of timeList" (click) = "presentActionSheet()">
 		<ion-grid>
 			<ion-row>
-				<ion-col col-12>
+				<ion-col col-12 class="day-label">
 					{{ time.day }}
 				</ion-col>
 			</ion-row>
@@ -37,7 +37,7 @@
 
 
 	<ion-fab right bottom>
-		<button ion-fab color="defualt" (click)="presentToast()" class="in-out">{{ this.toSignInorOut }}</button>
+		<button ion-fab color="defualt" (click)="presentToast()" class="tk-fab in-out">{{ this.toSignInorOut }}</button>
 	</ion-fab>
 
 </ion-content>

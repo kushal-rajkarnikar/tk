@@ -21,7 +21,10 @@ export class TimeServiceProvider {
   constructor(private http: Http) {
     // console.log('Hello TimeServiceProvider Provider');
     // this.storage.set('name', 'Max');
+  
   }
+
+  
 
 
     getTimeLog(){
